@@ -1,0 +1,50 @@
+<Center><h2><%=@subject.subject_name%></h2></center>
+<p id="notice"><%= notice %></p>
+<br>
+<h3><i>Listing Issued books</i></h3>
+
+<table>
+  <tr>
+    <th style="width:150px">Title</th>
+    <th style="width:150px">Author</th>
+    <th>Issued To</th>
+    <th></th>
+  </tr>
+
+<% @subject.books.each do |bo| %>
+<% if bo.Bookissued == "Issued" %>
+  <tr>
+     <td style="width:150px"><%= bo.title %></td>
+<td style="width:150px"><%= bo.Author %></td>
+    <td><%= bo.Issuedperson %></td>
+    <td><%= link_to 'Return', issueret_book_path(bo)%></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+<h3><i>Listing Free books</i></h3>
+
+<table>
+  <tr>
+    <th style="width:150px">Title</th>
+    <th style="width:150px">Author</th>
+    <th></th>
+  </tr>
+<% @subject.books.each do |bo| %>
+<% if bo.Bookissued == "Free" %>
+ <tr>
+    <td style="width:150px"><%= bo.title %></td>
+    <td style="width:150px"><%= bo.Author %></td>
+    <td><%= link_to 'Issue', issueret_book_path(bo) %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+</p>
+
+<%= link_to 'Back', list_subjects_path%>
+<%= link_to 'Home', books_path %>

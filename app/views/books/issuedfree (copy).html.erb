@@ -1,0 +1,43 @@
+<h1><i>Listing Issued books</i></h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Issued To</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @books.each do |book| %>
+<% if book.Bookissued == "Issued" %>
+  <tr>
+    <td><%= book.title %></td>
+    <td><%= book.Issuedperson %></td>
+    <td><%= link_to 'Show', book %></td>
+    <td><%= link_to 'Edit', edit_book_path(book) %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+<h1><i>Listing Free books</i></h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @books.each do |book| %>
+<% if book.Bookissued == "Free" %>
+  <tr>
+    <td><%= book.title %></td>
+    <td><%= link_to 'Show', book %></td>
+    <td><%= link_to 'Edit', edit_book_path(book) %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>

@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Subject name:</b>
+  <%= @subject.subject_name %>
+</p>
+<p>
+  <b>Books:</b>
+<br>
+<h2><i>Listing Issued books</i></h2>
+
+<table>
+  <tr>
+    <th style="width:150px">Title</th>
+    <th style="width:150px">Author</th>
+    <th>Issued To</th>
+    <th></th>
+  </tr>
+
+<% @subject.books.each do |bo| %>
+<% if bo.Bookissued == "Issued" %>
+  <tr>
+     <td style="width:150px"><%= bo.title %></td>
+<td style="width:150px"><%= bo.Author %></td>
+    <td><%= bo.Issuedperson %></td>
+    <td><%= link_to 'Return', issueret_book_path(bo)%></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+
+<h2><i>Listing Free books</i></h2>
+
+<table>
+  <tr>
+    <th style="width:150px">Title</th>
+    <th style="width:150px">Author</th>
+    <th></th>
+  </tr>
+<% @subject.books.each do |bo| %>
+<% if bo.Bookissued == "Free" %>
+ <tr>
+    <td style="width:150px"><%= bo.title %></td>
+    <td style="width:150px"><%= bo.Author %></td>
+    <td><%= link_to 'Issue', issueret_book_path(bo) %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+
+</p>
+
+<%= link_to 'Edit', edit_subject_path(@subject) %> |
+<%= link_to 'Back', subjects_path %>

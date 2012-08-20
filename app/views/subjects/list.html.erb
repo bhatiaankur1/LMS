@@ -1,0 +1,32 @@
+<head>
+<style type="text/css" media="screen">
+body
+{
+background-image:url('http://localhost:3000/assets/books_main_lgt.jpg');
+background-size:300px 300px;
+background-repeat: no-repeat;
+background-color:#fffffa;
+background-position: 50% 65%;
+}
+</style>
+</head>
+<body>
+<h1><Center><img src="http://localhost:3000/assets/ExtendScriptToolkit.png" alt="books" height="40" width="50" />&nbsp<u><i>Books by Subject</i></u></center></h1><br>
+<Center>
+<table>
+  <tr>
+    <th></th>
+  </tr>
+
+<% @subjects.each do |subject| %>
+  <tr>
+    <td><%= link_to subject.subject_name, listshow_subject_path(subject) %></td>
+   </td>
+  </tr>
+<% end %>
+</table>
+</Center>
+<br />
+
+<%= link_to 'Home', books_path %>
+</body>

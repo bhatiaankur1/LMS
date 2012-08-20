@@ -1,0 +1,59 @@
+  <head>
+<style type="text/css" media="screen">
+body
+{
+background-image:url('http://localhost:3000/assets/books_main_lgt.jpg');
+background-size:400px 400px;
+background-repeat: no-repeat;
+background-color:#fffffa;
+background-position: 50% 65%;
+}
+</style>
+</head>
+<body>
+<h1><Center><img src="http://localhost:3000/assets/book_icon_small.gif" alt="books" height="30" width="35" />&nbsp<u><i>Books</i></u></center></h1>
+<center>
+<h3>Issued Books</h3>
+</center>
+<table>
+  <tr>
+    <th style="width:150px">Title</th>
+    <th style="width:150px">Author</th>
+    <th>Issued To</th>
+    <th></th>
+  </tr>
+
+<% @books.each do |book| %>
+<% if book.Bookissued == "Issued" %>
+  <tr>
+    <td style="width:250px"><%= book.title %></td>
+<td style="width:250px"><%= book.Author %></td>
+    <td><%= book.Issuedperson %></td>
+    <td><%= link_to 'Return', issueret_book_path(book)%></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+<center>
+<h3>Free Books</h3>
+</center>
+<table>
+  <tr>
+    <th style="width:250px">Title</th>
+    <th style="width:250px">Author</th>
+    <th></th>
+  </tr>
+
+<% @books.each do |book| %>
+<% if book.Bookissued == "Free" %>
+  <tr>
+    <td style="width:250px"><%= book.title %></td>
+    <td style="width:250px"><%= book.Author %></td>
+    <td><%= link_to 'Issue', issueret_book_path(book) %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+<br><br>
+<%= link_to 'Home', books_path %>
+</body>
