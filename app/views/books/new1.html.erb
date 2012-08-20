@@ -1,0 +1,48 @@
+<h1>New book</h1>
+
+<%= form_for(@book) do |f| %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :Author %><br />
+    <%= f.text_field :Author %>
+  </div>
+<div class="field">
+    <%= f.label :subject %><br />
+<%#= f.text_field :subjid %>
+    <%= f.select :subjid, @subject.map {|p| [p.subject_name,p.id]}%>
+</div>
+<div class="field">
+    <%= f.label :Book_Issued %><br />
+<%= f.select :Bookissued, [['Free','Free'],['Issued','Issued']],:html_options => {:onclick =>'hideIssued();'}%>
+    <%#= f.text_field :Bookissued %>
+  </div>
+<div class="field" id = "f1" style="display:none">
+    <%= f.label :Issued_Person %><br />
+    <%= f.text_field :Issuedperson %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
+
+
+<%= link_to 'Back', books_path %>
